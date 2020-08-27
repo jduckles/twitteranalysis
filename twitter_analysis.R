@@ -2,6 +2,7 @@ library(rtweet)
 library(tidytext) 
 library(ggplot2)
 library(dplyr) 
+library(lubridate) 
 
 frequent_words <- function(query, n=500, more_than=5, lang=NULL) { 
 
@@ -19,4 +20,19 @@ frequent_words <- function(query, n=500, more_than=5, lang=NULL) {
   frequent_words
 }
 
+# When active 
+activity_plot <- function(faves) { 
+  
+  
+  faves %>% select(created_at) %>% mutate(wday = wday(created_at), 
+                                           hour = hour(created_at), 
+                                           week=week(created_at)) %>% 
+    ggplot(aes(x=hour)) + 
+    geom_density() #+ 
+    #facet_wrap(~ week)
+  
+}
+
+tweetsc <- get_favorites('jduckles', n=2000)
+             
 frequent_words("🍯")
