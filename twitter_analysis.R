@@ -3,10 +3,6 @@ library(tidytext)
 library(ggplot2)
 library(dplyr) 
 
-
-honey <- search_tweets("🍯")
-manuka_tweets <- search_tweets("bioactive", n=500) 
-
 frequent_words <- function(query, n=500, more_than=5, lang=NULL) { 
 
   tweets <- search_tweets(query, n=500, lang=lang) 
@@ -23,3 +19,4 @@ frequent_words <- function(query, n=500, more_than=5, lang=NULL) {
   frequent_words
 }
 
+frequent_words("🍯")
